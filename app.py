@@ -122,7 +122,6 @@ def upload_pdf():
         output_files.append(output_pdf_path)
 
     if len(output_files) == 1:
-        print("Returning single file")
         return send_file(
             output_files[0], as_attachment=True, mimetype="application/pdf"
         )
@@ -134,7 +133,7 @@ def upload_pdf():
 
     send_file(zip_path, as_attachment=True, mimetype="application/zip")
     cleanup()
-    return 
+    return
 
 
 if __name__ == "__main__":
