@@ -1,0 +1,6 @@
+uploads/
+zipped/
+output/
+.venv
+*.pdf
+node_modules/
