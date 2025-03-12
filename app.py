@@ -5,7 +5,10 @@ import zipfile
 from flask_cors import CORS
 import os
 import shutil
-
+import sys
+import time
+import threading
+import atexit
 
 app = Flask(__name__, static_folder="static", template_folder="templates")
 CORS(app)  # Allow CORS for API
@@ -20,7 +23,7 @@ os.makedirs(ZIP_FOLDER, exist_ok=True)
 
 def cleanup():
     """Deletes all files inside upload, output, and zip folders."""
-    folders = ["uploads", "output", "zipped"]  # Adjust folder names if needed
+    folders = ["uploads", "output", "zipped"]
 
     for folder in folders:
         folder_path = os.path.join(os.getcwd(), folder)
@@ -29,9 +32,9 @@ def cleanup():
                 file_path = os.path.join(folder_path, filename)
                 try:
                     if os.path.isfile(file_path) or os.path.islink(file_path):
-                        os.unlink(file_path)  # Remove file
+                        os.unlink(file_path)
                     elif os.path.isdir(file_path):
-                        shutil.rmtree(file_path)  # Remove directory
+                        shutil.rmtree(file_path)
                 except Exception as e:
                     print(f"❌ Error deleting {file_path}: {str(e)}")
 

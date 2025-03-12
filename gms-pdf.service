@@ -1,0 +1,15 @@
+[Unit]
+Description=Give more space PDF server
+After=network.target
+
+[Service]
+User=orangepi
+Group=orangepi
+WorkingDirectory=/opt/server/gms-pdf
+ExecStart=./start.sh
+Restart=3
+RuntimeMaxSec=600
+
+[Install]
+WantedBy=multi-user.target
+
